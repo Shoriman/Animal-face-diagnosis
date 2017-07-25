@@ -45,7 +45,16 @@ def calc_hist(img, descriptor, VW):
 
     return hist
 
-    
+def calc_hist_intersection(face_hist, target_hist_list):
+    # Calculate normalized histogram intersection
+    d_list = []
+    for target_hist in target_hist_list:
+        d = 0
+        for i in xrange(len(face_hist)):
+            d += min(face_hist[i],target_hist[0][i])
+        d_list.append(float(d)/sum(face_hist))
+    return np.array(d_list).mean()
+        
     
     
     
